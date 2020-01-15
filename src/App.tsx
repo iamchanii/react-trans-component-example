@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Trans from './Trans';
+
+const message = '반갑습니다 <0>방문객</0>님! 좋은 하루 보내세요!';
+
+const handleClickName = () => {
+  alert('Clicked!');
+};
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>
+        <Trans message={message}>
+          Welcome <strong onClick={handleClickName}>Stranger</strong>! Have a
+          nice day.
+        </Trans>
+      </p>
     </div>
   );
-}
+};
 
 export default App;
