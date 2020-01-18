@@ -26,10 +26,9 @@ interface TransProps {
 }
 
 const Trans: React.FC<TransProps> = memo(({ children, message }) => {
-  const childrenElementMap = _.pipe(
+  const childrenElementList = _.pipe(
     Children.toArray(children),
     _.filter(allPass([isValidElement, isNotFragment])),
-    _.reduce.indexed((acc, child, index) => ({ ...acc, [index]: child }), {}),
   );
 
   let index = 0;
@@ -39,7 +38,7 @@ const Trans: React.FC<TransProps> = memo(({ children, message }) => {
       return wrapWithFragment(token);
     }
 
-    const childElement = childrenElementMap[index++] as any;
+    const childElement = childrenElementList[index++] as any;
 
     return childElement
       ? cloneElement(childElement, {
